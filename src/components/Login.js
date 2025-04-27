@@ -7,13 +7,11 @@ import {
   updateProfile,
 } from "firebase/auth";
 import { auth } from "../utils/firebase";
-import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { addUser } from "../utils/userSlice";
-import {PHOTO_URL} from '../utils/constants';
+import {BG_URL, PHOTO_URL} from '../utils/constants';
 
 const Login = () => {
-  const navigate = useNavigate();
   const dispatch = useDispatch();
   const [isSignInform, setIsSignInForm] = useState(true);
   const [errorMsg, setErrorMsg] = useState(null);
@@ -53,13 +51,11 @@ const Login = () => {
               );
             })
             .catch((error) => {
-              const errorCode = error.code;
               const errorMessage = error.message;
               setErrorMsg(errorMessage);
             });
         })
         .catch((error) => {
-          const errorCode = error.code;
           const errorMessage = error.message;
           setErrorMsg(errorMessage);
         });
@@ -73,8 +69,6 @@ const Login = () => {
           const user = userCredential.user;
         })
         .catch((error) => {
-          const errorCode = error.code;
-          const errorMessage = error.message;
         });
     }
   };
@@ -84,9 +78,9 @@ const Login = () => {
       <Header />
       <div className="absolute">
         <img
-          src="https://assets.nflxext.com/ffe/siteui/vlv3/fb5cb900-0cb6-4728-beb5-579b9af98fdd/web/IN-en-20250127-TRIFECTA-perspective_cf66f5a3-d894-4185-9106-5f45502fc387_large.jpg"
-          alt="background"
+          src={BG_URL}
           className="z-100 grayscale-25"
+          alt="bg-image"
         />
       </div>
       <form
